@@ -24,25 +24,6 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli@latest
 
-      - name: Validate EAS token
-        run: |
-          echo "EAS_TOKEN=${EAS_TOKEN:+set}"
-          echo "EXPO_TOKEN=${EXPO_TOKEN:+set}"
-          if [ -z "$EAS_TOKEN" ] && [ -z "$EXPO_TOKEN" ]; then
-            echo "ERROR: secrets EAS_TOKEN or EXPO_TOKEN must be set"
-            exit 1
-          fi
-        shell: bash
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-
-      - name: Check EAS authentication
-        run: eas whoami
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-
       - name: Initialize EAS project
         run: eas init --non-interactive --yes
         env:
