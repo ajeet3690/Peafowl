@@ -25,10 +25,9 @@ jobs:
         run: npm install -g eas-cli@latest
 
       - name: Initialize EAS project
-        run: eas init --non-interactive --yes
+        run: eas init --non-interactive --yes 2>&1 | tee eas-init.log || cat eas-init.log
         env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EAS_TOKEN }}
 
       - name: Build APK
         run: eas build --platform android --profile preview --non-interactive
