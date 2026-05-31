@@ -1,0 +1,7 @@
+# Ignore editor and build artifacts
+node_modules/
+.expo/
+.vscode/
+*.log
+*.tmp
+vscode-source/
